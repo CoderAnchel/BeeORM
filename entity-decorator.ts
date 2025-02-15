@@ -11,9 +11,9 @@ const datatypes = ["string", "number", "boolean", "date", "double", "char"];
 
 export function Entity(name: string): ClassDecorator {
     return (target) => {
-        console.log("🔷 Testing necesity: "+target.name);
-        console.log("From Entity: ")
-        console.log(target)
+        //console.log("🔷 Testing necesity: "+target.name);
+        //console.log("From Entity: ")
+        //console.log(target)
         registeredEntities.set(target, "Entity");
         EntitiesData.set(target, {primary: null, properties: []});
         BufferedEntitiesCheck.set(target, {primary: null, properties: []});
@@ -21,46 +21,46 @@ export function Entity(name: string): ClassDecorator {
 }
 
 export function checkIfEntity(target: Function) {
-    console.log("From Check: ")
-    console.log(target)
+    //console.log("From Check: ")
+    //console.log(target)
 
     if (!target) {
-        console.log("🚨 Error: El target no es válido");
+       // console.log("🚨 Error: El target no es válido");
         return false;
     }
 
-    console.log("🚨 Getting name for check: " + target.name);
+    //console.log("🚨 Getting name for check: " + target.name);
     return registeredEntities.get(target) === "Entity";
 }
 
 export function showEntitiesData() {
     EntitiesData.forEach((value, key) => {
-        console.log(`🔷 Entity: ${key.name}`);
-        console.log(`🔷 Properties: ${value.properties.map(prop => prop.name).join(", ")}`);
-        console.log(`🔷 Primary key: ${value.primary}`);
-        console.log("--------------------");
+        //console.log(`🔷 Entity: ${key.name}`);
+        //console.log(`🔷 Properties: ${value.properties.map(prop => prop.name).join(", ")}`);
+        //console.log(`🔷 Primary key: ${value.primary}`);
+        //console.log("--------------------");
     });
 }
 
 export function showBufferedEntities() {
     BufferedEntities.forEach((value) => {
         if (value.property instanceof PrimaryKeyC) {
-            console.log(`🔷🔶 BUFFERED Propertie is Primary Key`);
+            //console.log(`🔷🔶 BUFFERED Propertie is Primary Key`);
         }
-        console.log(`🔷🔶 BUFFERED Entity: ${value.target.name}`);
-        console.log(`🔷🔶 BUFFERED Propertie name: ${value.property.name}`);
-        console.log(`🔷🔶 BUFFERED Propertie type: ${value.property.type}`);
+        //console.log(`🔷🔶 BUFFERED Entity: ${value.target.name}`);
+        //console.log(`🔷🔶 BUFFERED Propertie name: ${value.property.name}`);
+        //console.log(`🔷🔶 BUFFERED Propertie type: ${value.property.type}`);
 
-        console.log("--------------------");
+        //console.log("--------------------");
     });
 }
 
 export function showEntitiesDataBuff() {
     BufferedEntitiesCheck.forEach((value, key) => {
-        console.log(`🔷📕 Entity: ${key.name}`);
-        console.log(`🔷📕 Properties: ${value.properties.map(prop => prop.name).join(", ")}`);
-        console.log(`🔷📕 Primary key: ${value.primary}`);
-        console.log("--------------------");
+        //console.log(`🔷📕 Entity: ${key.name}`);
+        //console.log(`🔷📕 Properties: ${value.properties.map(prop => prop.name).join(", ")}`);
+        //console.log(`🔷📕 Primary key: ${value.primary}`);
+        //console.log("--------------------");
     });
 }
 
@@ -77,13 +77,13 @@ export function transformBufferedToValidatedData() {
             }
 
             entityData.primary = value.property;
-            console.log(`🔷🔶🔑 Setting primary key ${value.property.name} to class ${value.target.name}`);
+            //console.log(`🔷🔶🔑 Setting primary key ${value.property.name} to class ${value.target.name}`);
         } else {
             if (!datatypes.includes(value.property.type)) {
                 throw new Error(`❌ Error: Tipo de dato no válido para la propiedad ${value.property.name}`);
             }
 
-            console.log(`🔷📕🗓️ Adding property ${value.property.name} to class ${value.target.name}`);
+            //console.log(`🔷📕🗓️ Adding property ${value.property.name} to class ${value.target.name}`);
             entityData.properties.push(value.property);
         }
     });
@@ -95,7 +95,7 @@ export function transformBufferedToValidatedData() {
         EntitiesData.set(key, value);
     });
 
-    console.log("🔷📕🔑 Validating entities data");
+    //console.log("🔷📕🔑 Validating entities data");
     showEntitiesDataBuff();
     BufferedEntitiesCheck.clear()
     showEntitiesDataBuff();
@@ -110,7 +110,7 @@ export function showNormalizedEntities() {
                 Properties: value.properties
             }
         }
-        console.log(normalized);
-        console.log("*********************")
+        //console.log(normalized);
+        //console.log("*********************")
     })
 }

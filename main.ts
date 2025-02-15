@@ -112,33 +112,37 @@ export class BeeORM{
         return new BeeRepository(T)
     }
 
+    static async StartupQuery() {
+        await startupQuery(EntitiesData);
+    }
+
 }
 
-await BeeORM.init("./Entities");
-await BeeORM.connection({
-    host: "localhost",
-    user: "root",
-    password: "kgyspy10230",
-    database: "albertBank"
-});
-await BeeORM.test();
-await BeeORM.query("CREATE TABLE IF NOT EXISTS usersPrueba2 (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), surname VARCHAR(255))")
-await BeeORM.query("INSERT INTO usersPrueba2 (name) VALUES ('Alberto')");
-await BeeORM.query("SELECT * FROM usersPrueba");
-await startupQuery(EntitiesData);
+//await BeeORM.init("./Entities");
+//await BeeORM.connection({
+//    host: "localhost",
+//    user: "root",
+//    password: "kgyspy10230",
+//    database: "albertBank"
+//});
+//await BeeORM.test();
+//await BeeORM.query("CREATE TABLE IF NOT EXISTS usersPrueba2 (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), surname VARCHAR(255))")
+//await BeeORM.query("INSERT INTO usersPrueba2 (name) VALUES ('Alberto')");
+//await BeeORM.query("SELECT * FROM usersPrueba");
+//await BeeORM.StartupQuery();
 
-const catsRepo = await BeeORM.BeeFactory(Gato);
-catsRepo.getNameTable();
-catsRepo.getAll();
-console.log(catsRepo.getPrimaryKey());
+//const catsRepo = await BeeORM.BeeFactory(Gato);
+//catsRepo.getNameTable();
+//catsRepo.getAll();
+//console.log(catsRepo.getPrimaryKey());
 
-const gato = new Gato();
-gato.raza = "Mishi";
-gato.gato_id = 80;
-gato.nombre = "Mishi";
+//const gato = new Gato();
+//gato.raza = "Mishi";
+//gato.gato_id = 80;
+//gato.nombre = "Mishi";
 
-const data = await catsRepo.getById(24);
-console.log("CAT:",data);
+//const data = await catsRepo.getById(24);
+//console.log("CAT:",data);
 
-const entities: Array<Gato> = await catsRepo.getAll();
-console.log(entities);
+//const entities: Array<Gato> = await catsRepo.getAll();
+//console.log(entities);

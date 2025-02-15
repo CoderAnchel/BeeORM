@@ -58,6 +58,7 @@ export class BeeRepository<T> {
         const query = `INSERT INTO ${this.tableName} (${keys.join(", ")}) VALUES (${values.map((value) => `'${value}'`).join(", ")})`;
         try {
             await BeeORM.query(query);
+            console.log("Data inserted successfully");
         } catch (error) {
             console.error("Error inserting data:", error);
         }
@@ -67,6 +68,7 @@ export class BeeRepository<T> {
         const query = `DELETE FROM ${this.tableName} WHERE ${this.primaryKey} = ${entity[this.primaryKey]}`;
         try {
             await BeeORM.query(query);
+            console.log("Data deleted successfully");
         } catch (error) {
             console.error("Error deleting data:", error);
         }

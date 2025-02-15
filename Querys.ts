@@ -72,9 +72,9 @@ export async function startupQuery(EntitiesData: Map<Function, {primary: Primary
 
         BeeORM.query(queryBuilder);
 
-        console.log("QUERY FOR "+normalized.Entity_Name+" ------------------");
-        console.log(queryBuilder);
-        console.log("--------------------------------------------------------");
+        //console.log("QUERY FOR "+normalized.Entity_Name+" ------------------");
+        //console.log(queryBuilder);
+        //console.log("--------------------------------------------------------");
 
         /**
          * Asynchronously checks and updates the columns of the table corresponding to the normalized entity.
@@ -85,11 +85,11 @@ export async function startupQuery(EntitiesData: Map<Function, {primary: Primary
          */
         const promise = (async () => {
             // 🟢 Log: Indicating the start of the column check process
-            console.log("COLUMNS FOR " + normalized.Entity_Name + " ------------------");
+            //console.log("COLUMNS FOR " + normalized.Entity_Name + " ------------------");
             // 🔍 Step 1: Retrieve the current columns from the database
             const [columns]: [any[], FieldPacket[]] = await BeeORM.dbConnection.execute(`SHOW COLUMNS FROM ${normalized.Entity_Name}`);
             // 🟢 Log: Displaying current table columns
-            console.log(columns);
+            //console.log(columns);
 
             // 🔄 Step 2: Normalize the entity properties into a database-compatible structure
             const entityProperties = normalized.details.Properties.map(prop => ({
@@ -122,7 +122,7 @@ export async function startupQuery(EntitiesData: Map<Function, {primary: Primary
             parsedEntities.push(resolvedNormalizedEntity);
 
             // 🟢 Log: Displaying expected column structure
-            console.log("Normalized Columns: ", normalizedColumns);
+            //console.log("Normalized Columns: ", normalizedColumns);
 
             // 🔄 Step 4: Compare database columns with expected columns
             const columnsMatch = columns.length === normalizedColumns.length && columns.every((col, index) => {
@@ -136,7 +136,7 @@ export async function startupQuery(EntitiesData: Map<Function, {primary: Primary
             });
 
             // 🟢 Log: Indicating whether columns match
-            console.log(`Columns match for ${normalized.Entity_Name}: ${columnsMatch}`);
+            //console.log(`Columns match for ${normalized.Entity_Name}: ${columnsMatch}`);
 
             // ⚠️ If columns do not match, proceed with updates
             if (!columnsMatch) {
@@ -157,21 +157,21 @@ export async function startupQuery(EntitiesData: Map<Function, {primary: Primary
                 for (const field of missingFields) {
                     const alterQuery = `ALTER TABLE ${normalized.Entity_Name} ADD COLUMN ${field.Field} ${field.Type}`;
                     await BeeORM.dbConnection.execute(alterQuery);
-                    console.log(`Added column ${field.Field} to ${normalized.Entity_Name}`);
+                    //console.log(`Added column ${field.Field} to ${normalized.Entity_Name}`);
                 }
 
                 // 🔄 Step 7: Modify altered columns
                 for (const field of alteredFields) {
                     const alterQuery = `ALTER TABLE ${normalized.Entity_Name} MODIFY COLUMN ${field.Field} ${field.Type}`;
                     await BeeORM.dbConnection.execute(alterQuery);
-                    console.log(`Modified column ${field.Field} in ${normalized.Entity_Name}`);
+                    //console.log(`Modified column ${field.Field} in ${normalized.Entity_Name}`);
                 }
 
                 // ➖ Step 8: Remove deleted columns
                 for (const field of removedFields) {
                     const alterQuery = `ALTER TABLE ${normalized.Entity_Name} DROP COLUMN ${field.Field}`;
                     await BeeORM.dbConnection.execute(alterQuery);
-                    console.log(`Removed column ${field.Field} from ${normalized.Entity_Name}`);
+                    //console.log(`Removed column ${field.Field} from ${normalized.Entity_Name}`);
                 }
             }
         })();
