@@ -1,5 +1,5 @@
 # 🐝 BeeORM
-![BeeORM Logo](./bee.png)
+![BeeORM Logo](bee.png)
 
 🚀 **A TypeScript ORM inspired by JPA – A Side Project for Learning**
 
