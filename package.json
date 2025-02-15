@@ -1,0 +1,20 @@
+{
+  "name": "beehive.ts",
+  "version": "0.0.1",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Microservices based web framework",
+  "dependencies": {
+    "mysql2": "^3.12.0",
+    "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.2"
+  }
+}
