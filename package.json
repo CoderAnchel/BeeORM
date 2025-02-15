@@ -1,15 +1,16 @@
 {
-  "name": "beehive.ts",
+  "name": "beeorm",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "main.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "Microservices based web framework",
+  "keywords": [    "backend",
+    "typescript", "ORM", "MySQL"],
+  "author": "Anchel Ascaso Castro",
+  "license": "MIT",
+  "description": "BeeORM is a TypeScript-based ORM that I built as a side project, inspired by Java's JPA. One day, I thought it would be a great way to deepen my understanding of TypeScript by trying to create something similar.\n\nThis project is not meant to compete with or improve existing TypeScript ORMs—it's purely a learning experience. BeeORM uses decorators to define entities and properties, making database interactions more intuitive. It currently supports MySQL and focuses on entity registration,metadata handling, and query execution.",
   "dependencies": {
     "mysql2": "^3.12.0",
     "reflect-metadata": "^0.2.2"
