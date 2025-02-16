@@ -130,8 +130,8 @@ initialize().catch(console.error);
 This Entity will be represented has follows
 
 ```typescript
-import {Entity, Column} from "typeorm"
-import {PrimaryKey} from "./primaryKey-decorator";
+import {Entity, Column} from "beeorm"
+import {PrimaryKey} from "beeorm/primaryKey-decorator";
 
 @Entity("Photo")
 export class Photo {
